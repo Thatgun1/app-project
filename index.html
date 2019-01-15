@@ -9,12 +9,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="javascript.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUnMTpKitb5yUBmPgYTAo_27NJ4xtbCFg&callback=initMap"
+  async defer></script>
   <style>
     /* Make the image fully responsive */
   .carousel-inner img {
       width: 100%;
       height: 100%;
   }
+
+  #map{
+    height: 500px;
+  }
+
   </style>
 </head>
 
@@ -30,7 +39,7 @@
     </ul>
 
     <!-- The slideshow -->
-    <div class="carousel-inner">
+    <!-- <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="https://goo.gl/images/D9t1q1" alt="Galaxy" width="1100" height="500">
       </div>
@@ -40,7 +49,7 @@
       <div class="carousel-item">
         <img src="https://goo.gl/images/vQsNms" alt="The Moon" width="1100" height="500">
       </div>
-    </div>
+    </div> -->
 
     <!-- Left and right controls -->
     <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -103,8 +112,13 @@
           </div>
         </div>
       </div>
+      <div id="map">
+
+      </div>
 
     </div>
+
+    <div id="map"></div>
 
 </body>
 
