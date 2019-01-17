@@ -50,5 +50,11 @@ function initMap() {
     swopeMarker.addListener('click', function(){
         swopeLabel.open(map, swopeMarker);
     })
-       
 }
+
+$(document).ready(function(){
+    $("#submitLocation").on("click", function(){
+        alert("working");
+        console.log("working");
+    })
+})
