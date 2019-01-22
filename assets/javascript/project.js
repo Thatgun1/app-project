@@ -115,15 +115,15 @@ function getEphemTable() {
 
 getstarChart();
 function getstarChart() {
-    var starapi_url = "http://www.astropical.space/astrodb/starchart.php?planis=1&lat=35&lon=139&width=800"
+    var starapi_url = "http://www.astropical.space/astrodb/starchart.php?planis=1&lat=35&lon=139&width=800";
 
     $.ajax({
         url: starapi_url,
-        success: function (result) { //consol.log(result);
+        success: function (result) { //console.log(result);
         }
     })
-    // var starimg = "<h4>A Snapshot of Your Stars<h4>";
-    // htm +="<img>";
-    // $.getJSON(starapi_url)
+    var starimg = "<h4>A Snapshot of Your Stars<h4>";
+    htm += "<img>";
+    $.getJSON(starapi_url)
 
 }
