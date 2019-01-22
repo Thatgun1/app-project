@@ -1,3 +1,49 @@
+$(document).ready(function(){
+    
+    $("#newSearchBtn").on("click", function(){
+        console.log("hey");
+        var units = "imperial";
+        var userInput = $("#userInput").val().trim();
+        var apiKey = "da5c46eeeb2ee9f1a5dabd07c4651964";
+        var queryUrl = "https://api.openweathermap.org/data/2.5/weather?zip=" + userInput + "&APPID=" + apiKey + "&units=" + units;
+        
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function(response){
+            console.log(response);
+            $(".weatherText").show();
+            $("#cityName").text(response.name);
+            $("#tempData").text(Math.round(response.main.temp));
+            $("#windData").text(Math.round(response.wind.speed));
+            $("#visibilityData").text(response.visibility);
+
+            function backgroundImg() {
+                if(response.weather.main == "Rain", "Drizzle", "Mist") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/rain.jpg')";
+                }
+    
+                if(response.weather.main == "Clouds") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/cloudy.jpg')";
+                }
+    
+                if(response.weather.main == "Thunderstorm") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/thunderstorm.jpg')";
+                }
+    
+                if(response.weather.main == "Snow") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/snow.jpg')";
+                }
+    
+                if(response.weather.main == "Clear") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/clear.jpg')";
+                }
+            }
+            backgroundImg();
+        })
+    })
+})
+
 // Map
 function initMap() {
     console.log('asd');
@@ -83,3 +129,4 @@ function initMap() {
                             'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
 }
+

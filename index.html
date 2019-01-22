@@ -13,12 +13,35 @@
     <p><a href="html_contact.html"></a>
       <p><a href="html_donations.html"></a>
 
-        <style>
-          /* Make the image fully responsive */
+  <style>
+  /* Make the image fully responsive */
   .carousel-inner img {
       width: 100%;
       height: 100%;
   }
+
+  #userInput {
+    width: 50%;
+  }
+
+  #weatherWindow {
+    background-image: 100%;
+    height: 350px;
+    color: white;
+  }
+
+  .weatherText {
+    display: none;
+  }
+
+  #cityName {
+    font-size: 46px;
+  }
+
+  #cityTemp {
+    font-size: 32px;
+  }
+
   #map{
     height: 500px;
   }
@@ -85,9 +108,20 @@
     <div class="container">
       <h3>Witness the Majesty of the Universe</h3>
       <!-- Button to Open the Modal -->
-      <button type="button" id="locationBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         Share Your Location?
       </button>
+      <br>
+    <input type="text" id="userInput" placeholder="What Is Your Zip Code?">
+    <button type="button" id="newSearchBtn">Search</button>
+    <div id="weatherWindow">
+      <div id="cityName">
+        
+      </div>  
+      <div id="cityTemp" class="weatherText"><span id="tempData"></span> °F</div>
+      <div id="windStatus" class="weatherText">Wind Speed is Currently <span id="windData"></span> mph</div>
+      <div id="visibilityStatus" class="weatherText"><span id="visibilityData"></span></div>
+    </div>
 
       <!-- The Modal -->
       <div class="modal fade" id="myModal">
@@ -108,7 +142,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" id="submitLocation" class="btn btn-danger" data-dismiss="modal">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
             </div>
 
           </div>
