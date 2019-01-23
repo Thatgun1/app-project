@@ -26,10 +26,16 @@ body {
   }
   
   h1 {
-    color: white;
+    color: black;
     text-align: center;
+    font-weight: bold;  
   }
-
+  
+  p {
+    color: yellow;
+    font-size: 40px;
+  }
+  
 #demo {
     position: relative!important;
 }
