@@ -1,5 +1,3 @@
-//Longitude & Latitude
-
 
 //Map
 function initMap() {
@@ -115,7 +113,7 @@ function getEphemTable() {
         url: api_url,
         success: function (result) {
             console.log(result);
-            var data = $.parseJSON(result); 
+            var data = $.parseJSON(result);
             console.log(data);
             var dt = new Date(data.info.timestamp * 10000);
             $("#headinfo").html(dt.toUTCString() + "<br>Latitude: " + data.info.latitude + "°<br>Longitude: " + data.info.longitude + "°<br>Sidereal time: " + data.info.lst + "hrs<br>Julian Date: " + data.info.jd + "<br><br>");
@@ -146,5 +144,48 @@ function getEphemTable() {
         $("#starchart").html(starimg);
     }
 
+    //Weather
+    getWeatherInfo();
+    function getWeatherInfo() {
+        console.log("hey");
+        var units = "imperial";
+        var apiKey = "da5c46eeeb2ee9f1a5dabd07c4651964";
+        var queryUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&APPID=" + apiKey + "&units=" + units;
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            $(".weatherText").show();
+            $("#cityName").text(response.name);
+            $("#tempData").text(Math.round(response.main.temp));
+            $("#windData").text(Math.round(response.wind.speed));
+            $("#visibilityData").text(response.visibility);
+            $("#humidityData").text(response.main.humidity);
+            function backgroundImg() {
+                if (response.weather[0].main === "Rain", "Drizzle", "Mist") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/rainy.png')";
+                }
+
+                if (response.weather[0].main === "Clouds") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/cloudy.png')";
+                }
+
+                if (response.weather[0].main === "Thunderstorm") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/thunderstorms.png')";
+                }
+
+                if (response.weather[0].main === "Snow") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/snowy.png')";
+                }
+
+                if (response.weather[0].main === "Clear") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/clear.png')";
+                }
+            }
+            backgroundImg();
+
+        })
+    }
 
 }
