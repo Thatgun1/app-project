@@ -2,10 +2,66 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Donate</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css" type="text/css">
     <script src="assets/project.js"></script>
-    <p><a href="html_donations.asp"></a>
+    <a href="html_donations.html"></a>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-light">
+        <!-- Links --> 
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Donations</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Donations</h1>
+
+    <p>
+        Please consider providing a small donation to keep our project going.  With your help we can continue to provide the best user experience possible.  We at Star Trekking are continually searching for ways to integrate more data into the site.  This will make it more efficient and helpful for the user to get the most of their astronomical search.
+    </p>
+    <p>
+        You can click on the 'Donate' button below and donate via PayPal, or you can contact us directly to make other arrangements.
+    </p>
+    <div class="container">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+            <!-- Specify who receives donation. -->
+            <input type="hidden" name="Star Trekking" value="bjpgfc@mail.umkc.edu">
+
+            <!-- Donate button. -->
+            <input type="hidden" name="cmd" value="_donations">
+
+            <!-- Specify details about the contribution -->
+            <input type="hidden" name="item_name" value="Friends of Star Trekker">
+            <input type="hidden" name="item_number" value="Donate">
+            <input type="hidden" name="currency_code" value="USD">
+
+            <!-- Display the payment button. -->
+            <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate">
+            <img alt="Donations" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUnMTpKitb5yUBmPgYTAo_27NJ4xtbCFg&callback=initMap"
+        async defer></script>
+</body>
+
+</html>

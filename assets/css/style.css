@@ -1,3 +1,8 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
 /* --Background Image-- */
 body{
     background-image: url("../images/space1.jpg");
@@ -6,6 +11,7 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 20px;
 
 }
 header{
@@ -30,6 +36,12 @@ body {
     text-align: center;
   }
 
+  .container {
+    color: black;
+    font-size: 20px;
+    
+  }
+
 #demo {
     position: relative!important;
 }
@@ -52,6 +64,7 @@ body {
         color: white;
         padding: 12px 20px;
         border: none;
+        
         border-radius: 4px;
         cursor: pointer;
       }
