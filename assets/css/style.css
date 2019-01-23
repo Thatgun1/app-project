@@ -70,3 +70,26 @@ body {
         top:15%;
         bottom: 15%;
     }
+/*Weather app settings */
+    #userInput {
+      width: 50%;
+    }
+   
+    #weatherWindow {
+      background-image: 100%;
+      height: 250px;
+      width: 350px;
+      color: white;
+    }
+   
+    .weatherText {
+      display: none;
+    }
+   
+    #cityName {
+      font-size: 42px;
+    }
+   
+    #cityTemp {
+      font-size: 32px;
+    }
