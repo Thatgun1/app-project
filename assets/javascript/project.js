@@ -1,4 +1,5 @@
-// Map
+
+//Map
 function initMap() {
     console.log('asd');
     // Map Options
@@ -87,13 +88,34 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 getEphemTable();
 function getEphemTable() {
 
-    var api_url = "https://www.astropical.space/astrodb/api-ephem.php?lat=35&lon=139";
-    //   var api_url = "https://www.astropical.space/astrodb/api-ephem.php?lat="+local_latitude+"&lon="+local_longitude;
+    //Longitude and Latitude
+    function getLatLong(callback) {
+        $.getJSON('https://ipinfo.io', function (data) {
+            var location = data.loc;
+            lat = location.split(",")[0];
+            lon = location.split(",")[1];
+            callback(lat, lon);
+        });
+    }
+
+    $(document).ready(function () {
+        getLatLong(function (lat, lon) {
+            console.log(lat + "yes");
+            console.log(lon + "yes");
+        });
+    });
+    //calls Longitude and Latitude into Parent Function
+    var local_latitude = this.lat;
+    var local_longitude = this.lon;
+
+    var api_url = "https://www.astropical.space/astrodb/api-ephem.php?lat=" + local_latitude + "&lon=" + local_longitude;
     $.ajax({
         url: api_url,
-        success: function (result) {	  //console.log(result);
-            var data = $.parseJSON(result); //console.log(data);
-            var dt = new Date(data.info.timestamp * 1000);
+        success: function (result) {
+            console.log(result);
+            var data = $.parseJSON(result);
+            console.log(data);
+            var dt = new Date(data.info.timestamp * 10000);
             $("#headinfo").html(dt.toUTCString() + "<br>Latitude: " + data.info.latitude + "°<br>Longitude: " + data.info.longitude + "°<br>Sidereal time: " + data.info.lst + "hrs<br>Julian Date: " + data.info.jd + "<br><br>");
         }
     });
@@ -110,20 +132,60 @@ function getEphemTable() {
         htm += "</table>";
         $("#ephemtable").html(htm);
     });
-    setTimeout(getEphemTable, 10000);
-}
+    setTimeout(getEphemTable, 100000);
 
-getstarChart();
-function getstarChart() {
-    var starapi_url = "http://www.astropical.space/astrodb/starchart.php?planis=1&lat=35&lon=139&width=800"
+    //Star Chart
+    getstarChart();
+    function getstarChart() {
+        var starapi_url = "https://www.astropical.space/astrodb/starchart.php?planis=1&lat=" + local_latitude + "&lon=" + local_longitude + "&width=800";
+        console.log(starapi_url);
+        var starimg = "<h4>A Snapshot of Your Stars<h4>";
+        starimg += "<img src='" + starapi_url + "'>";
+        $("#starchart").html(starimg);
+    }
 
-    $.ajax({
-        url: starapi_url,
-        success: function (result) { //consol.log(result);
-        }
-    })
-    // var starimg = "<h4>A Snapshot of Your Stars<h4>";
-    // htm +="<img>";
-    // $.getJSON(starapi_url)
+    //Weather
+    getWeatherInfo();
+    function getWeatherInfo() {
+        console.log("hey");
+        var units = "imperial";
+        var apiKey = "da5c46eeeb2ee9f1a5dabd07c4651964";
+        var queryUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&APPID=" + apiKey + "&units=" + units;
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            $(".weatherText").show();
+            $("#cityName").text(response.name);
+            $("#tempData").text(Math.round(response.main.temp));
+            $("#windData").text(Math.round(response.wind.speed));
+            $("#visibilityData").text(response.visibility);
+            $("#humidityData").text(response.main.humidity);
+            function backgroundImg() {
+                if (response.weather[0].main === "Rain", "Drizzle", "Mist") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/rainy.png')";
+                }
+
+                if (response.weather[0].main === "Clouds") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/cloudy.png')";
+                }
+
+                if (response.weather[0].main === "Thunderstorm") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/thunderstorms.png')";
+                }
+
+                if (response.weather[0].main === "Snow") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/snowy.png')";
+                }
+
+                if (response.weather[0].main === "Clear") {
+                    document.getElementById("weatherWindow").style.backgroundImage = "url('assets/images/clear.png')";
+                }
+            }
+            backgroundImg();
+
+        })
+    }
 
 }
