@@ -26,10 +26,19 @@ body {
   }
   
   h1 {
-    color: white;
+    color: black;
     text-align: center;
+    font-weight: bold;  
   }
-
+  
+  #p1 {
+    color: yellow;
+    font-size: 30px;
+  }
+  #list {
+    color: yellow;
+    font-size: 15px;
+  }
 #demo {
     position: relative!important;
 }
