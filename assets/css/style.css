@@ -31,11 +31,14 @@ body {
     font-weight: bold;  
   }
   
-  p {
+  #p1 {
     color: yellow;
-    font-size: 40px;
+    font-size: 30px;
   }
-  
+  #list {
+    color: yellow;
+    font-size: 15px;
+  }
 #demo {
     position: relative!important;
 }
